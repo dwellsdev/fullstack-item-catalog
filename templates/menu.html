@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Menuette - {{restaurant.name}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Menuette</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">New Item</a></li>
+                    <li><a href="/gdisconnect">Logout</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Menu content -->
+    <h1>{{ restaurant.name }}</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li class="messages">{{message}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+    <a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create New Menu Item</a>
+    <h2>Menu</h2>
+    {% for item in items %}
+    {{ item.name }}<br>
+    {{ item.price }}<br>
+    {{ item.description }}<br>
+    <a class="btn btn-warning" href="{{ url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit</a>
+    <a class="btn btn-danger" href="{{ url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete</a>
+    <br>
+    {% endfor %}
+  </body>
+</html>

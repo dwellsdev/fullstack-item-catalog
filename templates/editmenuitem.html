@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Edit a Menu Item</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Menuette</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">New Item</a></li>
+                  <li><a href="/gdisconnect">Logout</a></li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+  
+    <form class="" action="{{url_for('editMenuItem', restaurant_id=restaurant_id, menu_id=menu_id, item=item)}}" method="post">
+        <p class="input-label" value="{{item.name}}">Name *</p>
+        <input type="text" size="30" name="name" value="{{item.name}}" required>
+        <p class="input-label">Description *</p>
+        <input type="text" size="30" name="description" value="{{item.description}}" required>
+        <p class="input-label">Price *</p>
+        <input type="text" size="30" name="price" value="{{item.price}}" required>
+        <p class="input-label">Course *</p>
+        <select name="course">
+          <option value="appetizer" {% if item.course == 'appetizer' %} selected {% endif %}>Appetizer</option>
+          <option value="entree" {% if item.course == 'entree' %} selected {% endif %}>Entree</option>
+          <option value="dessert" {% if item.course == 'dessert' %} selected {% endif %}>Dessert</option>
+          <option value="beverage" {% if item.course == 'beverage' %} selected {% endif %}>Beverage</option>
+        </select><br><br>
+        <input type="submit" value="Update">
+        <a class="btn btn-cancel" href="{{url_for('restaurantMenu', restaurant_id=restaurant_id)}}">Cancel</a>
+
+    </form>
+</body>
+
+</html>

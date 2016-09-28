@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+  </head>
+  <body>
+    <div class="nav">
+      <div class="container">
+
+      </div>
+      <a href="{{url_for('restaurantList')}}"><h1 class='nav-logo'>Menuette</h1></a>
+      <ul class="nav-menu">
+        <li><a class='btn btn-success' href="{{url_for('restaurantList')}}">Top</a></li>
+        <li><a class='btn btn-success' href="/login">Login</a></li>
+      </ul>
+
+    </div>
+    <div class="clear">
+
+    </div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="messages-box">
+        <ul class="messages-list">
+          {% for message in messages %}
+            <li class="messages">{{message}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    {% endwith %}
+
+
+    <div class="row">
+      <div class="container">
+        {% for restaurant in restaurants %}
+        <div class="col-md-4">
+          <div class="content-box">
+            <a href="{{ url_for('restaurantMenu', restaurant_id=restaurant.id )}}">{{restaurant.name}}</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Menuette - Edit a Restaurant</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <form class="" action="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" method="post">
+        <p class="input-label">Name *</p>
+        <input type="text" size="30" name="name" value="" required>
+        <input type="submit" value="Create">
+        <a class="btn btn-cancel" href="{{url_for('restaurantList')}}">Cancel</a>
+    </form>
+</body>
+
+</html>

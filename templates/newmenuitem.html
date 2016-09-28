@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Add a Menu Item</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Menuette</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/gdisconnect">Logout</a></li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+
+    <form class="" action="{{url_for('newMenuItem', restaurant_id=restaurant_id)}}" method="post">
+        <p class="input-label">Name *</p>
+        <input type="text" size="30" name="name" value="" required>
+        <p class="input-label">Description *</p>
+        <input type="text" size="30" name="description" value="" required>
+        <p class="input-label">Price *</p>
+        <input type="text" size="30" name="price" value="" required>
+        <p class="input-label">Course *</p>
+        <select name="course">
+          <option value="appetizer">Appetizer</option>
+          <option value="entree">Entree</option>
+          <option value="dessert">Dessert</option>
+          <option value="beverage">Beverage</option>
+        </select><br><br>
+        <input class="btn btn-success" type="submit" value="Create">
+        <a class="btn btn-danger" href="{{url_for('restaurantMenu', restaurant_id=restaurant_id)}}">Cancel</a>
+    </form>
+</body>
+
+</html>
